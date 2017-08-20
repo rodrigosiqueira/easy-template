@@ -1,18 +1,15 @@
-#!/bin/bash
-
 #
 # Copyright (C) 2017 Rodrigo Siqueira  <siqueira@kuniri.org>
 #
 # This source code is licensed under the GNU general public license,
 # Version 3.  See the file COPYING for more details
 
-set -e
+#!/bin/bash
 
 declare -r BLUECOLOR="\033[1;34;49m%s\033[m\n"                                             
 declare -r REDCOLOR="\033[1;31;49m%s\033[m\n"
 
-#declare -r DEFAULT_PATH="$HOME/.config/easy-template/templates"
-declare -r DEFAULT_PATH="./templates"
+declare -r EASY_TEMPLATE_PATH="$HOME/.config/easy-template/templates"
 
 function usage ()
 {
@@ -29,7 +26,7 @@ function list_flex_templates_available ()
 {
   printf $BLUECOLOR "Available templates:"
   local -i i=1
-  for available_templates in $(eval echo $DEFAULT_PATH/*); do
+  for available_templates in $(eval echo $EASY_TEMPLATE_PATH/*); do
     template_name=$(basename $available_templates)
     echo -e " [$i] $template_name"
     (( i++ ))
@@ -42,7 +39,7 @@ function copy_template ()
   if [ -z $create_at ]; then
     create_at=$PWD
   fi
-  cp -r $DEFAULT_PATH/$1 $create_at
+  cp -r $EASY_TEMPLATE_PATH/$1 $create_at
   printf "\t>> Template $1 copied at $create_at\n"
 }
 
@@ -83,7 +80,7 @@ function template_control ()
       copyTo=${parameters["p"]}
     fi
 
-    for template in $( eval echo $DEFAULT_PATH/* ); do
+    for template in $( eval echo $EASY_TEMPLATE_PATH/* ); do
       template_name=$(basename $template)
       if [ "$template_name" == "${parameters["c"]}" ]; then
         copy_template ${parameters["c"]} $copyTo
@@ -101,6 +98,3 @@ function easy-template ()
 {
    (>&2 template_control "$@")
 }
-
-# TODO: REMOVER
-easy-template "$@"
