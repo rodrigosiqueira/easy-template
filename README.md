@@ -50,4 +50,9 @@ easy-template -c [template_name] -n [name]
 ```
 easy-template -c [template_name] -p [path]
 ```
+# Development
 
+> Dependencies:
+
+* moreutils
+* shunit2
