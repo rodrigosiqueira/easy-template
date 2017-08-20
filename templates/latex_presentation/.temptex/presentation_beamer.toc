@@ -1,0 +1,3 @@
+\beamer@sectionintoc {1}{Section name}{2}{0}{1}
+\beamer@sectionintoc {2}{Another section}{4}{0}{2}
+\beamer@sectionintoc {3}{About this presentation}{6}{0}{3}
