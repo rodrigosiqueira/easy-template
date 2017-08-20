@@ -1,7 +1,5 @@
 # Easy template
 
-----
-
 # About
 
 > The easy-template is just a simple interface for manage simple set of
