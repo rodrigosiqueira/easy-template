@@ -13,7 +13,7 @@ declare -r REDCOLOR="\033[1;31;49m%s\033[m\n"
 declare -r SEPARATOR="========================================================="
 declare -r APPLICATIONNAME="easy-template"
 declare -r INSTALLTO="$HOME/.config/$APPLICATIONNAME"
-declare -r TEMPLATEDIR="templates"
+declare -r TARGETDIR="templates"
 
 # Print normal message (e.g info messages). This function verifies if stdout
 # is open and print it with color, otherwise print it without color.
@@ -43,8 +43,8 @@ function complain()
 
 function usage()
 {
-  say "--install   | -i   Install easy-template"
-  say "--uninstall | -u   Uninstall easy-template"
+  say "--install   | -i   Install $APPLICATIONNAME"
+  say "--uninstall | -u   Uninstall $APPLICATIONNAME"
 }
 
 function clean_legacy()
@@ -71,10 +71,10 @@ function synchronize_files()
   # Copy the script
   cp $APPLICATIONNAME.sh $INSTALLTO
   # Copy templates
-  rsync -vr $TEMPLATEDIR $INSTALLTO
+  rsync -vr $TARGETDIR $INSTALLTO
 
   # Add to bashrc
-  echo "# easy-template" >> $HOME/.bashrc
+  echo "# $APPLICATIONNAME" >> $HOME/.bashrc
   echo "source $INSTALLTO/$APPLICATIONNAME.sh" >> $HOME/.bashrc
 
   say $SEPARATOR
@@ -82,7 +82,7 @@ function synchronize_files()
   say $SEPARATOR
 }
 
-function install_easy-template()
+function install_home()
 {
   # First clean old installation
   clean_legacy
@@ -93,7 +93,7 @@ function install_easy-template()
 # Options
 case $1 in
   --install | -i)
-    install_easy-template;;
+    install_home;;
   --uninstall | -u)
     clean_legacy;;
   --help | -h)

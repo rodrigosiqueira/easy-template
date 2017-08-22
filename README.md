@@ -54,5 +54,4 @@ easy-template -c [template_name] -p [path]
 
 > Dependencies:
 
-* moreutils
 * shunit2
