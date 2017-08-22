@@ -55,3 +55,9 @@ easy-template -c [template_name] -p [path]
 > Dependencies:
 
 * shunit2
+
+> Execute tests:
+
+```
+./run_tests.sh
+```
